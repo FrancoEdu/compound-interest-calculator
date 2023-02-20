@@ -1,6 +1,6 @@
 import { Container } from "./styles";
 import  logoImg  from '../../assets/logo.svg'
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 
 export function Form(){
 
@@ -8,21 +8,23 @@ export function Form(){
     const [mensalValue,setMensalValue] = useState(0)
     const [anualTax, setAnualTax] = useState(0)
     const [period,setPeriod] = useState(0) 
+    const [totalInvest, setTotalInvest] = useState(0)
+    const [total,setTotal] = useState(0)
+    const [totalTax, setTotalTax] = useState(0)
 
-    async function handleCreateNewCalculo(event: FormEvent) {
-        event.preventDefault()
+    async function handleCreateNewCalculo() {
+        const tax = Math.pow(1 + anualTax*0.01,period) 
 
-        const total = () => {
-            return 0
-        }
+        setTotalInvest(initialValue + mensalValue * period * 12)
+        setTotal(initialValue + mensalValue * period * tax)
+        setTotalTax(total - totalInvest)
         
-        const totalInvest = () =>{
-            return initialValue + mensalValue * period
-        }
+        console.log(tax)
 
-        const totalOfJutos = () =>{
-            return total() - totalInvest()
-        }
+        setAnualTax(0)
+        setMensalValue(0)
+        setInitialValue(0)
+        setPeriod(0)
     }
 
     return(
@@ -41,6 +43,41 @@ export function Form(){
                     <input type="number" value={anualTax} onChange={event=>setAnualTax(Number(event.target.value))}/>
                     <strong>Período(anos):</strong>
                     <input type="number" value={period} onChange={event=>setPeriod(Number(event.target.value))}/>
+                </div>
+                <div className="box-of-values">
+                    <div>
+                        Total investido:
+                        <strong>
+                            {
+                                new Intl.NumberFormat('pt-BR',{
+                                    style: 'currency',
+                                    currency: 'BRL'
+                                }).format(totalInvest)
+                            }
+                        </strong>
+                    </div>
+                    <div>
+                        Total de Juros:
+                        <strong>
+                            {
+                                new Intl.NumberFormat('pt-BR',{
+                                    style: 'currency',
+                                    currency: 'BRL'
+                                }).format(totalTax)
+                            }
+                        </strong>
+                    </div>
+                    <div>
+                        Total:
+                        <strong>
+                            {
+                                new Intl.NumberFormat('pt-BR',{
+                                    style: 'currency',
+                                    currency: 'BRL'
+                                }).format(total)
+                            }
+                        </strong>
+                    </div>
                 </div>
                 <div className="react-modal-footer">
                     <button type="submit" onClick={handleCreateNewCalculo}>

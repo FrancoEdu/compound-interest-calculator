@@ -9,8 +9,9 @@ export const Container = styled.div`
 
     .react-modal-form{
         background: var(--white);
-        width: 25rem;
+        width: 30rem;
         border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0rem 0.25rem 1.2rem;
     }
 
     .react-modal-image{
@@ -55,7 +56,7 @@ export const Container = styled.div`
 
         button{
             height: 3rem;
-            width: 10rem;
+            width: 15rem;
             background: #33cc33;
             cursor: pointer;
             border-radius: 10px;
@@ -64,6 +65,7 @@ export const Container = styled.div`
             font-weight: 700;
             font-size: 1rem;
             transition: 2s;
+            box-shadow: rgba(0, 0, 0, 0.35) 0rem 0.25rem 1.2rem;
 
             &:hover{
                 background:var(--green);
@@ -74,5 +76,21 @@ export const Container = styled.div`
     .react-modal-poweredBy-and-links{
         display: grid;
         justify-content: center;
+    }
+
+    .box-of-values{
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+
+        div{
+            box-shadow: rgba(0, 0, 0, 0.35) 0rem 0.25rem 1.2rem;
+            background-color: blue;
+            display: grid;
+            padding: 0.5rem;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            width: 8.5rem;
+        }
     }
 `
