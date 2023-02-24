@@ -13,18 +13,10 @@ export function Form(){
     const [totalTax, setTotalTax] = useState(0)
 
     async function handleCreateNewCalculo() {
-        const tax = Math.pow(1 + anualTax*0.01,period) 
-
         setTotalInvest(initialValue + mensalValue * period * 12)
-        setTotal(initialValue + mensalValue * period * tax)
-        setTotalTax(total - totalInvest)
         
-        console.log(tax)
-
-        setAnualTax(0)
-        setMensalValue(0)
-        setInitialValue(0)
-        setPeriod(0)
+        let valorAcrescido = initialValue + mensalValue * (anualTax/12)/100
+        console.log(valorAcrescido)
     }
 
     return(
